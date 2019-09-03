@@ -2,7 +2,10 @@
 
 #*******************************************************************************
 #
-# --------------------------------------------------------
+# Bare Conductive Pi Cap Polyphonic Touch MP3 Utility C++ Example Runner
+# ----------------------------------------------------------------------
+#
+# run - compiles and runs touch-mp3
 #
 # Written by Stefan Dzisiewski-Smith
 #
@@ -58,8 +61,8 @@ execute_and_echo() {
 if [[ $make_return_value -eq 0 ]]; then
     # add sudo if we need to - and pass all arguments to the target
     if [[ $EUID -ne 0 ]]; then
-        execute_and_echo sudo ./sampler.a "$@"
+        execute_and_echo sudo ./touch-mp3 "$@"
     else
-        execute_and_echo ./sampler.a "$@"
+        execute_and_echo ./touch-mp3 "$@"
     fi
 fi
