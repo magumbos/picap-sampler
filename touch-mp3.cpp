@@ -1,3 +1,41 @@
+/*******************************************************************************
+
+  This is heavily based on the work of Stegan Dzisiewski-Smith. 
+
+  Bare Conductive Pi Cap
+  ----------------------
+
+  button-utility.cpp - utility for reacting to single-click, long-click and
+  double-click events from the Pi Cap button
+
+  Written for Raspberry Pi.
+
+  Bare Conductive code written by Stefan Dzisiewski-Smith.
+
+  This work is licensed under a MIT license https://opensource.org/licenses/MIT
+  
+  Copyright (c) 2016, Bare Conductive
+  
+  Permission is hereby granted, free of charge, to any person obtaining a copy
+  of this software and associated documentation files (the "Software"), to deal
+  in the Software without restriction, including without limitation the rights
+  to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+  copies of the Software, and to permit persons to whom the Software is
+  furnished to do so, subject to the following conditions:
+  
+  The above copyright notice and this permission notice shall be included in all
+  copies or substantial portions of the Software.
+  
+  THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+  IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+  FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+  AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+  LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+  OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+  SOFTWARE.
+
+ *******************************************************************************/
+
 #include <MPR121.h>
 #include <wiringPi.h>
 #include <signal.h>
@@ -12,7 +50,7 @@
 #include <SDL2/SDL_mixer.h>
 
 
-#define NUM_SAMPLE_BANKS 2
+#define NUM_SAMPLE_BANKS 2 //-----------------------Change here if you have added extra samples to the folder
 #define NUM_ELECTRODES 12
 
 #define RED_LED_PIN 22
@@ -22,7 +60,7 @@
 #define SINGLE_TOUCH 1
 #define TOUCH_DOUBLE 2
 #define TOUCH_TRIPLE 3
-int TOTAL_PROG = 3; //-----------------------Change here if you have added extra samples to the folder
+int TOTAL_PROG = 3; 
 
 using namespace std;
 
@@ -30,6 +68,7 @@ using namespace std;
 #define DEBOUNCE_LOCKOUT_MS    10
 #define DOUBLEPRESS_TIMEOUT_US 300000
 #define LONGPRESS_TIMEOUT_US   750000
+string longPressCommand = "sync && halt &";
 
 // enums and variables for state and timeout action
 enum state_t {IDLE, PRESSED, RELEASED};
@@ -98,7 +137,7 @@ void doublePress() {
 
 void longPress() {
   // long press event handler
-  //system(longPressCommand.c_str());
+  system(longPressCommand.c_str());
 }
 
 void alarmHandler(int dummy) {
