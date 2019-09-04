@@ -1,5 +1,6 @@
 # Pi Cap Sampler
-Similiar to the midi synth version but the mp3 samples respond faster.
+WAV sampler
+
 
 ## Requirements
 
@@ -11,3 +12,10 @@ Similiar to the midi synth version but the mp3 samples respond faster.
 * Clone this repository with `git clone https://github.com/magumbos/picap-sampler.git`
 
 N.B. must be run as root    
+
+To run at start-up
+"sudo nano /etc/rc.local"
+add before 'exit 0' "/home/pi/the/location/of/script/run &"
+Ctrl+X
+Y
+Enter
