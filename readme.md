@@ -16,8 +16,11 @@ To add more samples, add 12 .wav files to the samples folder to make a new sampl
 
 ## Requirements
 
-#* Requires [WiringPi](http://wiringpi.com/) (`apt-get install wiringpi`)
-#* Requires [Bare Conductive's MPR121 libary for WiringPi](https://github.com/BareConductive/wiringpi-mpr121)
+#* Requires [WiringPi](http://wiringpi.com/) (`apt-get install wiringpi`) ;
+#* Requires [Bare Conductive's MPR121 libary for WiringPi](https://github.com/BareConductive/wiringpi-mpr121);
+
+sudo apt-get install picap (after install don't forget to run "picap-setup");
+[see here for other instructions if it doesn't work](https://www.bareconductive.com/make/setting-up-pi-cap-raspberry-pi/);
 
 ## Install / Build
 
