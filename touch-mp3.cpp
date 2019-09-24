@@ -89,6 +89,7 @@ int updateDelay = 200;
 int updateDelay2 = 100;
 int PROG = 1;
 int elecTouch[12];
+bool touched[12];
 
 // "volatile" means - I can be modified from elsewhere
 bool volatile keepRunning = true;
@@ -311,15 +312,30 @@ int main(void) {
     {
     case SINGLE_TOUCH:
     
-    if (MPR121.touchStatusChanged()) {
+    /*if (MPR121.touchStatusChanged()) {
       MPR121.updateTouchData();
 
       for (int b = 0; b < NUM_ELECTRODES; b++) {
         if (MPR121.isNewTouch(b)) {
         Mix_PlayChannel(-1, sample[b], 0);
+    */
+    
+    MPR121.updateFilteredData();
+    //check for touch
+    for (int b = 0; b < NUM_ELECTRODES; b++) 
+    {
+        if(MPR121.getFilteredData(b)<500 && touched[b]==false)
+        {
+        touched[b] = true;
+        Mix_PlayChannel(-1, sample[b], 0);
         }
-      }
+        else if(MPR121.getFilteredData(b)>500 && touched[b]==true) //check for release
+        {
+          touched[b]=false;
+        }
     }
+        
+      
         
     break;
     
