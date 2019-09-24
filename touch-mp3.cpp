@@ -293,6 +293,8 @@ int main(void) {
   // open SDL audio - sampling rate, format, channels, chunk size
   Mix_OpenAudio(44100, MIX_DEFAULT_FORMAT, 2, 1024);
 
+  //open 12 mixing channels
+  Mix_AllocateChannels(12);
   
   
   cout << "Load Samples" << endl;
@@ -327,7 +329,7 @@ int main(void) {
         if(MPR121.getFilteredData(b)<500 && touched[b]==false)
         {
         touched[b] = true;
-        Mix_PlayChannel(-1, sample[b], 0);
+        Mix_PlayChannel(b, sample[b], 0);
         }
         else if(MPR121.getFilteredData(b)>500 && touched[b]==true) //check for release
         {
@@ -348,7 +350,7 @@ int main(void) {
       
       for (int a = 0; a < NUM_ELECTRODES; a++) 
           {
-            if(MPR121.getFilteredData(a)<500) Mix_PlayChannel(-1, sample[a], 0);
+            if(MPR121.getFilteredData(a)<500) Mix_PlayChannel(a, sample[a], 0);
           }
           
       elecTouch[0]=0;
@@ -366,7 +368,7 @@ int main(void) {
       
       for (int a = 0; a < NUM_ELECTRODES; a++) 
           {
-            if(MPR121.getFilteredData(a)<500) Mix_PlayChannel(-1, sample[a], 0);
+            if(MPR121.getFilteredData(a)<500) Mix_PlayChannel(a, sample[a], 0);
           }
           
       elecTouch[0]=0;
